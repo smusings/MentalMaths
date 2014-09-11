@@ -44,6 +44,21 @@ public class SetupActivity extends Activity {
         num2.setText(Integer.toString(numSetUp(1000, 9999)));
     }
 
+    public void seekBar_1_call(){
+        if (seek1.getProgress() == 0){
+            singleDigit();
+        }
+        else if (seek1.getProgress() == 1){
+            doubleDigit();
+        }
+        else if (seek1.getProgress() == 2){
+            tripleDigit();
+        }
+        else if (seek1.getProgress() == 3){
+            quadDigit();
+        }
+    }
+
     public void setCountPlusOne(){
         int oldCount = Integer.valueOf(countRight.getText().toString());
         int newCount = oldCount + 1;

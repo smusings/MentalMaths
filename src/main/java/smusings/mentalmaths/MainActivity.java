@@ -25,21 +25,16 @@ public class MainActivity extends SetupActivity {
         seek1 = (SeekBar) findViewById(R.id.seek1);
 
         countRight.setText("0");
+        seek1.setProgress(0);
+        seekBar_1_call();
 
         seek1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressChanged = 0;
+
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChanged = progress;
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 if (progressChanged == 0){
                     singleDigit();
                 }
@@ -52,8 +47,20 @@ public class MainActivity extends SetupActivity {
                 else if (progressChanged == 3){
                     quadDigit();
                 }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+
+            }
+
+
         });
 
         num_answer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -74,6 +81,7 @@ public class MainActivity extends SetupActivity {
                         Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                         num_answer.setText("");
                         setCountPlusOne();
+                        seekBar_1_call();
                     }
                     else if (Integer.valueOf(num_answer.getText().toString()) != result){
                         Toast.makeText(MainActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
