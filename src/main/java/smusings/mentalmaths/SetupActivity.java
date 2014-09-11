@@ -12,6 +12,7 @@ public class SetupActivity extends Activity {
 
     public TextView num1;
     public TextView num2;
+    public TextView countRight;
     public EditText num_answer;
     public SeekBar seek1;
 
@@ -41,5 +42,15 @@ public class SetupActivity extends Activity {
     public void quadDigit(){
         num1.setText(Integer.toString(numSetUp(1000, 9999)));
         num2.setText(Integer.toString(numSetUp(1000, 9999)));
+    }
+
+    public void setCountPlusOne(){
+        int oldCount = Integer.valueOf(countRight.getText().toString());
+        int newCount = oldCount + 1;
+        countRight.setText(Integer.toString(newCount));
+    }
+
+    public void resetCount(){
+        countRight.setText("0");
     }
 }

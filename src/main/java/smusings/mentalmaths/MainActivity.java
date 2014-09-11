@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends SetupActivity {
@@ -19,8 +20,11 @@ public class MainActivity extends SetupActivity {
 
         num1 = (TextView) findViewById(R.id.num1);
         num2 = (TextView) findViewById(R.id.num2);
+        countRight = (TextView) findViewById(R.id.count_right);
         num_answer = (EditText) findViewById(R.id.num_result);
         seek1 = (SeekBar) findViewById(R.id.seek1);
+
+        countRight.setText("0");
 
         seek1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressChanged = 0;
@@ -59,24 +63,23 @@ public class MainActivity extends SetupActivity {
                 ((event.isShiftPressed() == false)) &&
                         (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
                         (event.getAction() == KeyEvent.ACTION_DOWN)){
-                    Integer result=Integer.valueOf(num1.getText().toString()) *
+                    int result=Integer.valueOf(num1.getText().toString()) *
                             Integer.valueOf(num2.getText().toString());
 
-                    Integer resultEntered=Integer.valueOf(num_answer.toString());
-
-                    if (resultEntered.equals("")){
-                        return false;
+                    if (num_answer.getText().toString().matches("")){
+                        num_answer.setText("");
+                        num_answer.clearFocus();
                     }
-                    else if (resultEntered == result){
-                        //do something
+                    else if (Integer.valueOf(num_answer.getText().toString()) == result){
+                        Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+                        num_answer.setText("");
+                        setCountPlusOne();
                     }
-                    else if (resultEntered != resultEntered){
-                        //toast wrong and reset a count
-
+                    else if (Integer.valueOf(num_answer.getText().toString()) != result){
+                        Toast.makeText(MainActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
+                        num_answer.setText("");
+                        resetCount();
                     }
-
-
-
                 }
                 return false;
             }

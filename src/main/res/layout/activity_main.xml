@@ -43,4 +43,8 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:imeOptions="actionDone"/>
+    <TextView
+        android:id="@+id/count_right"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
