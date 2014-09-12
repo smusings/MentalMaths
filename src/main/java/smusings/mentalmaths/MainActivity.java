@@ -1,14 +1,11 @@
 package smusings.mentalmaths;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends SetupActivity {
@@ -23,75 +20,18 @@ public class MainActivity extends SetupActivity {
         countRight = (TextView) findViewById(R.id.count_right);
         num_answer = (EditText) findViewById(R.id.num_result);
         seek1 = (SeekBar) findViewById(R.id.seek1);
+        seek2 = (SeekBar) findViewById(R.id.seek2);
 
         countRight.setText("0");
         seek1.setProgress(0);
+        seek2.setProgress(0);
         seekBar_1_call();
+        seekBar_2_call();
 
-        seek1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChanged = 0;
+        seek1.setOnSeekBarChangeListener(seeker1);
+        seek2.setOnSeekBarChangeListener(seeker2);
 
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChanged = progress;
-
-                if (progressChanged == 0){
-                    singleDigit();
-                }
-                else if (progressChanged == 1){
-                    doubleDigit();
-                }
-                else if (progressChanged == 2){
-                    tripleDigit();
-                }
-                else if (progressChanged == 3){
-                    quadDigit();
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-
-            }
-
-
-        });
-
-        num_answer.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((actionId == EditorInfo.IME_ACTION_DONE) ||
-                ((event.isShiftPressed() == false)) &&
-                        (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
-                        (event.getAction() == KeyEvent.ACTION_DOWN)){
-                    int result=Integer.valueOf(num1.getText().toString()) *
-                            Integer.valueOf(num2.getText().toString());
-
-                    if (num_answer.getText().toString().matches("")){
-                        num_answer.setText("");
-                        num_answer.clearFocus();
-                    }
-                    else if (Integer.valueOf(num_answer.getText().toString()) == result){
-                        Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
-                        num_answer.setText("");
-                        setCountPlusOne();
-                        seekBar_1_call();
-                    }
-                    else if (Integer.valueOf(num_answer.getText().toString()) != result){
-                        Toast.makeText(MainActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
-                        num_answer.setText("");
-                        resetCount();
-                    }
-                }
-                return false;
-            }
-        });
+        num_answer.setOnEditorActionListener(result_entered);
     }
 
 
