@@ -54,7 +54,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"/>
     <LinearLayout
+        android:id="@+id/multiplicant_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -75,6 +81,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/multiplier_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

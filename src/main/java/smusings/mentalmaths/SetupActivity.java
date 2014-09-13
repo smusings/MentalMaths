@@ -1,9 +1,12 @@
 package smusings.mentalmaths;
 
 import android.app.Activity;
+import android.os.CountDownTimer;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,9 +19,12 @@ public class SetupActivity extends Activity {
     public TextView num1;
     public TextView num2;
     public TextView countRight;
+    public TextView timer;
     public EditText num_answer;
     public SeekBar multiplicantSeek;
     public SeekBar multiplierSeek;
+    public LinearLayout multiplicandLayout;
+    public LinearLayout multiplierLayout;
 
 
     public static int numSetUp(int min, int max)
@@ -123,6 +129,11 @@ public class SetupActivity extends Activity {
                             (event.getAction() == KeyEvent.ACTION_DOWN))
             {
 
+
+                multiplicandLayout.setVisibility(View.GONE);
+                multiplierLayout.setVisibility(View.GONE);
+
+
                 int result=Integer.valueOf(num1.getText().toString()) *
                         Integer.valueOf(num2.getText().toString());
 
@@ -138,12 +149,12 @@ public class SetupActivity extends Activity {
                     setCountPlusOne();
                     seekBar_1_call();
                     seekBar_2_call();
+                    cdt.start();
                 }
                 else if (Integer.valueOf(num_answer.getText().toString()) != result)
                 {
                     Toast.makeText(SetupActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
                     num_answer.setText("");
-                    countRight.setText("0");
                 }
             }
             return false;
@@ -191,7 +202,24 @@ public class SetupActivity extends Activity {
         }
     }
 
+    CountDownTimer cdt = new CountDownTimer(30000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished)
+        {
+            timer.setText("Seconds Left: " + millisUntilFinished / 1000);
+        }
 
+        @Override
+        public void onFinish()
+        {
+            timer.setText("0");
+            multiplicandLayout.setVisibility(View.VISIBLE);
+            multiplierLayout.setVisibility(View.VISIBLE);
+            Toast.makeText(SetupActivity.this,
+                    "Your streak ends at: " + countRight.getText().toString() + "!", Toast.LENGTH_LONG).show();
+            countRight.setText("0");
+        }
+    };
 
     public void setCountPlusOne()
     {
