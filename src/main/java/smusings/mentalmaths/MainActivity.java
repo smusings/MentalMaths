@@ -19,17 +19,17 @@ public class MainActivity extends SetupActivity {
         num2 = (TextView) findViewById(R.id.num2);
         countRight = (TextView) findViewById(R.id.count_right);
         num_answer = (EditText) findViewById(R.id.num_result);
-        seek1 = (SeekBar) findViewById(R.id.seek1);
-        seek2 = (SeekBar) findViewById(R.id.seek2);
+        multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
+        multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
 
         countRight.setText("0");
-        seek1.setProgress(0);
-        seek2.setProgress(0);
+        multiplicantSeek.setProgress(0);
+        multiplierSeek.setProgress(0);
         seekBar_1_call();
         seekBar_2_call();
 
-        seek1.setOnSeekBarChangeListener(seeker1);
-        seek2.setOnSeekBarChangeListener(seeker2);
+        multiplicantSeek.setOnSeekBarChangeListener(seeker1);
+        multiplierSeek.setOnSeekBarChangeListener(seeker2);
 
         num_answer.setOnEditorActionListener(result_entered);
     }
