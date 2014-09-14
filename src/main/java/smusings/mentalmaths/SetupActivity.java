@@ -1,6 +1,7 @@
 package smusings.mentalmaths;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +26,8 @@ public class SetupActivity extends Activity {
     public SeekBar multiplierSeek;
     public LinearLayout multiplicandLayout;
     public LinearLayout multiplierLayout;
+
+    public static final String OLD_COUNT = "MyOldCount";
 
 
     //gives us our pseudo-random numbers
@@ -183,9 +186,17 @@ public class SetupActivity extends Activity {
             timer.setText("0");
             multiplicandLayout.setVisibility(View.VISIBLE);
             multiplierLayout.setVisibility(View.VISIBLE);
+            String oldCount = countRight.getText().toString();
             Toast.makeText(SetupActivity.this,
-                    "Your streak ends at: " + countRight.getText().toString() + "!", Toast.LENGTH_LONG).show();
+                    "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
             countRight.setText("0");
+
+            SharedPreferences pref = SetupActivity.this.getSharedPreferences(OLD_COUNT, 0);
+            SharedPreferences.Editor edt = pref.edit();
+            edt.putString("oldCount", oldCount);
+
+            edt.commit();
+
         }
     };
 
