@@ -28,13 +28,14 @@ public class SetupActivity extends Activity {
     public LinearLayout multiplierLayout;
 
     public static final String OLD_COUNT = "MyOldCount";
+    public static final String NEW_COUNT = "MyNewCount";
 
 
     //gives us our pseudo-random numbers
     public static int numSetUp(int min, int max) {
         Random random = new Random();
 
-        int randomInt=random.nextInt(max - min) + min;
+        int randomInt = random.nextInt(max - min) + min;
 
         return randomInt;
     }
@@ -183,7 +184,7 @@ public class SetupActivity extends Activity {
 
         @Override
         public void onFinish() {
-            timer.setText("0");
+            timer.setText("Seconds Left: " + "0");
             multiplicandLayout.setVisibility(View.VISIBLE);
             multiplierLayout.setVisibility(View.VISIBLE);
             String oldCount = countRight.getText().toString();
@@ -196,6 +197,8 @@ public class SetupActivity extends Activity {
             edt.putString("oldCount", oldCount);
 
             edt.commit();
+
+            setHighScore();
 
         }
     };
@@ -217,11 +220,17 @@ public class SetupActivity extends Activity {
 
         int initial = Integer.valueOf(high_score.getText().toString());
         int newcount = Integer.valueOf(new_score);
-        if (newcount >= initial){
+        if (newcount > initial){
             high_score.setText(new_score);
         }
-        else if (initial >= newcount){
-            high_score.setText(initial);
+        else if (initial > newcount){
+            high_score.setText(Integer.toString(initial));
         }
+
+        SharedPreferences prefCount = SetupActivity.this.getSharedPreferences(NEW_COUNT, 0);
+        SharedPreferences.Editor edtCount = prefCount.edit();
+        edtCount.putString("newCount", high_score.getText().toString());
+
+        edtCount.commit();
     }
 }

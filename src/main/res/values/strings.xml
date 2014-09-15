@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="multiplicand">Multiplicand</string>
     <string name="multiplier">Multiplier</string>
+    <string name="spree_count">Your current spree is at: </string>
 
 </resources>

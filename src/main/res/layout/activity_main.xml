@@ -54,11 +54,26 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"/>
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/spree_count"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/timer"
+            android:text="0"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/multiplicant_layout"
         android:layout_width="fill_parent"
