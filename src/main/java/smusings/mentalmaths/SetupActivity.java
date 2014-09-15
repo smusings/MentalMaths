@@ -205,4 +205,23 @@ public class SetupActivity extends Activity {
         int newCount = oldCount + 1;
         countRight.setText(Integer.toString(newCount));
     }
+
+    public void setHighScore(){
+        SharedPreferences pref = this.getSharedPreferences(OLD_COUNT, 0);
+        String new_score = pref.getString("oldCount", "0");
+
+        TextView high_score = (TextView) findViewById(R.id.high_score);
+        if (high_score.getText().toString().matches("")){
+            high_score.setText("0");
+        }
+
+        int initial = Integer.valueOf(high_score.getText().toString());
+        int newcount = Integer.valueOf(new_score);
+        if (newcount >= initial){
+            high_score.setText(new_score);
+        }
+        else if (initial >= newcount){
+            high_score.setText(initial);
+        }
+    }
 }
