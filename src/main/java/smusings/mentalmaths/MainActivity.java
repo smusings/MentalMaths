@@ -1,5 +1,6 @@
 package smusings.mentalmaths;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ public class MainActivity extends SetupActivity {
         num2 = (TextView) findViewById(R.id.num2);
         countRight = (TextView) findViewById(R.id.count_right);
         timer = (TextView) findViewById(R.id.timer);
+        high_score = (TextView) findViewById(R.id.high_score);
         num_answer = (EditText) findViewById(R.id.num_result);
         multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
         multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
@@ -33,6 +35,10 @@ public class MainActivity extends SetupActivity {
         multiplierSeek.setProgress(0);
         seekBar_1_call();
         seekBar_2_call();
+
+        SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
+        String top_score = pref.getString("newCount", "0");
+        high_score.setText(top_score);
 
         //assigns listeners to interactable elements
         multiplicantSeek.setOnSeekBarChangeListener(seeker1);

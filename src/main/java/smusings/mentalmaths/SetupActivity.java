@@ -23,6 +23,7 @@ public class SetupActivity extends Activity {
     public TextView num2;
     public TextView countRight;
     public TextView timer;
+    public TextView high_score;
     public EditText num_answer;
     public SeekBar multiplicantSeek;
     public SeekBar multiplierSeek;
@@ -224,11 +225,10 @@ public class SetupActivity extends Activity {
     }
 
     //sets the high score
-    public void setHighScore(){
+    public void setHighScore() {
         SharedPreferences pref = this.getSharedPreferences(OLD_COUNT, 0);
         String new_score = pref.getString("oldCount", "0");
 
-        TextView high_score = (TextView) findViewById(R.id.high_score);
         if (high_score.getText().toString().matches("")){
             high_score.setText("0");
         }
