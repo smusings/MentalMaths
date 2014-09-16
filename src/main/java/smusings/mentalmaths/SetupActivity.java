@@ -17,6 +17,8 @@ import java.util.Random;
 
 public class SetupActivity extends Activity {
 
+    //declares almost everything we plan on using
+    //made public for unit testing in the future
     public TextView num1;
     public TextView num2;
     public TextView countRight;
@@ -27,6 +29,7 @@ public class SetupActivity extends Activity {
     public LinearLayout multiplicandLayout;
     public LinearLayout multiplierLayout;
 
+    //declares these for SharedPreferences
     public static final String OLD_COUNT = "MyOldCount";
     public static final String NEW_COUNT = "MyNewCount";
 
@@ -106,6 +109,7 @@ public class SetupActivity extends Activity {
         }
     };
 
+    //listener for EditText Done button
     TextView.OnEditorActionListener result_entered = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -115,10 +119,12 @@ public class SetupActivity extends Activity {
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
 
 
+                //on done we hide the seekbars
                 multiplicandLayout.setVisibility(View.GONE);
                 multiplierLayout.setVisibility(View.GONE);
 
 
+                //set up the ints to work properly
                 int result=Integer.valueOf(num1.getText().toString()) *
                         Integer.valueOf(num2.getText().toString());
 
@@ -127,6 +133,7 @@ public class SetupActivity extends Activity {
                     num_answer.clearFocus();
                 }
 
+                //if correct, we say correct, add one to count and restart the countdown
                 else if (Integer.valueOf(num_answer.getText().toString()) == result) {
                     Toast.makeText(SetupActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                     num_answer.setText("");
@@ -136,6 +143,7 @@ public class SetupActivity extends Activity {
                     cdt.start();
                 }
 
+                //if wrong say wrong and do nothign else
                 else if (Integer.valueOf(num_answer.getText().toString()) != result) {
                     Toast.makeText(SetupActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
                     num_answer.setText("");
@@ -146,6 +154,7 @@ public class SetupActivity extends Activity {
     };
 
 
+    //used to give new numbers if correct
     public void seekBar_1_call() {
         if (multiplicantSeek.getProgress() == 0) {
             num1.setText(Integer.toString(numSetUp(1, 9)));
@@ -176,6 +185,7 @@ public class SetupActivity extends Activity {
         }
     }
 
+    //the coutndown timer and what to do when when time = 0
     CountDownTimer cdt = new CountDownTimer(30000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
@@ -192,23 +202,28 @@ public class SetupActivity extends Activity {
                     "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
             countRight.setText("0");
 
+            //sets up the preference and adds the string
             SharedPreferences pref = SetupActivity.this.getSharedPreferences(OLD_COUNT, 0);
             SharedPreferences.Editor edt = pref.edit();
             edt.putString("oldCount", oldCount);
 
+            //commits the string to memory
             edt.commit();
 
+            //triggers a method to set the high score
             setHighScore();
 
         }
     };
 
+    //adds one to the count
     public void setCountPlusOne() {
         int oldCount = Integer.valueOf(countRight.getText().toString());
         int newCount = oldCount + 1;
         countRight.setText(Integer.toString(newCount));
     }
 
+    //sets the high score
     public void setHighScore(){
         SharedPreferences pref = this.getSharedPreferences(OLD_COUNT, 0);
         String new_score = pref.getString("oldCount", "0");
@@ -218,6 +233,7 @@ public class SetupActivity extends Activity {
             high_score.setText("0");
         }
 
+        //logic for integers
         int initial = Integer.valueOf(high_score.getText().toString());
         int newcount = Integer.valueOf(new_score);
         if (newcount > initial){
@@ -227,10 +243,12 @@ public class SetupActivity extends Activity {
             high_score.setText(Integer.toString(initial));
         }
 
+        //this preference needs to be called upon somewhere else
         SharedPreferences prefCount = SetupActivity.this.getSharedPreferences(NEW_COUNT, 0);
         SharedPreferences.Editor edtCount = prefCount.edit();
         edtCount.putString("newCount", high_score.getText().toString());
 
+        //commits the newcount to memory
         edtCount.commit();
     }
 }
