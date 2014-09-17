@@ -32,7 +32,6 @@ public class SetupActivity extends Activity {
 
     //declares these for SharedPreferences
     public static final String OLD_COUNT = "MyOldCount";
-    public static final String NEW_COUNT = "MyNewCount";
 
 
     //gives us our pseudo-random numbers
@@ -210,10 +209,6 @@ public class SetupActivity extends Activity {
 
             //commits the string to memory
             edt.commit();
-
-            //triggers a method to set the high score
-            setHighScore();
-
         }
     };
 
@@ -223,6 +218,8 @@ public class SetupActivity extends Activity {
         int newCount = oldCount + 1;
         countRight.setText(Integer.toString(newCount));
     }
+
+    /*
 
     //sets the high score
     public void setHighScore() {
@@ -251,4 +248,5 @@ public class SetupActivity extends Activity {
         //commits the newcount to memory
         edtCount.commit();
     }
+    */
 }

@@ -1,6 +1,5 @@
 package smusings.mentalmaths;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,9 +35,7 @@ public class MainActivity extends SetupActivity {
         seekBar_1_call();
         seekBar_2_call();
 
-        SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
-        String top_score = pref.getString("newCount", "0");
-        high_score.setText(top_score);
+
 
         //assigns listeners to interactable elements
         multiplicantSeek.setOnSeekBarChangeListener(seeker1);

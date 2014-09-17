@@ -127,5 +127,11 @@
             android:progress="0"
             android:max="3"/>
     </LinearLayout>
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="smusings.mentalmaths.TopScoreFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout = "@layout/fragment_top_score"/>
 
 </LinearLayout>
