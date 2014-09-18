@@ -1,7 +1,7 @@
 package smusings.mentalmaths;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,6 +32,7 @@ public class SetupActivity extends Activity {
 
     //declares these for SharedPreferences
     public static final String OLD_COUNT = "MyOldCount";
+    public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
 
 
     //gives us our pseudo-random numbers
@@ -202,13 +203,9 @@ public class SetupActivity extends Activity {
                     "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
             countRight.setText("0");
 
-            //sets up the preference and adds the string
-            SharedPreferences pref = SetupActivity.this.getSharedPreferences(OLD_COUNT, 0);
-            SharedPreferences.Editor edt = pref.edit();
-            edt.putString("oldCount", oldCount);
-
-            //commits the string to memory
-            edt.commit();
+            Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
+            intent.putExtra(intent_count, oldCount);
+            startActivity(intent);
         }
     };
 
@@ -218,35 +215,4 @@ public class SetupActivity extends Activity {
         int newCount = oldCount + 1;
         countRight.setText(Integer.toString(newCount));
     }
-
-    /*
-
-    //sets the high score
-    public void setHighScore() {
-        SharedPreferences pref = this.getSharedPreferences(OLD_COUNT, 0);
-        String new_score = pref.getString("oldCount", "0");
-
-        if (high_score.getText().toString().matches("")){
-            high_score.setText("0");
-        }
-
-        //logic for integers
-        int initial = Integer.valueOf(high_score.getText().toString());
-        int newcount = Integer.valueOf(new_score);
-        if (newcount > initial){
-            high_score.setText(new_score);
-        }
-        else if (initial > newcount){
-            high_score.setText(Integer.toString(initial));
-        }
-
-        //this preference needs to be called upon somewhere else
-        SharedPreferences prefCount = SetupActivity.this.getSharedPreferences(NEW_COUNT, 0);
-        SharedPreferences.Editor edtCount = prefCount.edit();
-        edtCount.putString("newCount", high_score.getText().toString());
-
-        //commits the newcount to memory
-        edtCount.commit();
-    }
-    */
 }
