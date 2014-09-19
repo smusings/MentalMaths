@@ -2,15 +2,16 @@ package smusings.mentalmaths;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class TopScoreActivity extends SetupActivity {
 
-
-    public static final String OLD_COUNT = "MyOldCount";
+    //shared preference string
     public static final String NEW_COUNT = "MyNewCount";
 
+    //values we plan on using
     public TextView top_score_1;
     public TextView top_score_2;
     public TextView top_score_3;
@@ -35,62 +36,44 @@ public class TopScoreActivity extends SetupActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
+        //define our textviews
         top_score_1 = (TextView) findViewById(R.id.top1);
         top_score_2 = (TextView) findViewById(R.id.top2);
         top_score_3 = (TextView) findViewById(R.id.top3);
         top_score_4 = (TextView) findViewById(R.id.top4);
         top_score_5 = (TextView) findViewById(R.id.top5);
 
-        score1 = top_score_1.getText().toString();
-        score2 = top_score_2.getText().toString();
-        score3 = top_score_3.getText().toString();
-        score4 = top_score_4.getText().toString();
-        score5 = top_score_5.getText().toString();
+        //get our strings from sharedpreference
+        SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
+        score1 = pref.getString("slot1", "0");
+        score2 = pref.getString("slot2", "0");
+        score3 = pref.getString("slot3", "0");
+        score4 = pref.getString("slot4", "0");
+        score5 = pref.getString("slot5", "0");
 
+        //set the textviews with the correct score
+        top_score_1.setText(score1);
+        top_score_2.setText(score2);
+        top_score_3.setText(score3);
+        top_score_4.setText(score4);
+        top_score_5.setText(score5);
+
+        //our intent
         Intent intent = getIntent();
         new_score = intent.getStringExtra(MainActivity.intent_count);
 
         new_int_score = Integer.valueOf(new_score);
 
-        getIntScores();
         setIntScores();
     }
 
-    public void getIntScores(){
-        if (score1.matches("")){
-            top_score_1.setText("0");
-            top_score_2.setText("0");
-            top_score_3.setText("0");
-            top_score_4.setText("0");
-            top_score_5.setText("0");
-        }
-        else if (score2.matches("")){
-            top_score_2.setText("0");
-            top_score_3.setText("0");
-            top_score_4.setText("0");
-            top_score_5.setText("0");
-        }
-        else if (score3.matches("")){
-            top_score_3.setText("0");
-            top_score_4.setText("0");
-            top_score_5.setText("0");
-        }
-        else if (score4.matches("")){
-            top_score_4.setText("0");
-            top_score_5.setText("0");
-        }
-        else if (score5.matches("")){
-            top_score_5.setText("0");
-        }
-
+    public void setIntScores() {
         intscore1 = Integer.valueOf(top_score_1.getText().toString());
         intscore2 = Integer.valueOf(top_score_2.getText().toString());
         intscore3 = Integer.valueOf(top_score_3.getText().toString());
         intscore4 = Integer.valueOf(top_score_4.getText().toString());
         intscore5 = Integer.valueOf(top_score_5.getText().toString());
-    }
 
-    public void setIntScores() {
         if (new_int_score >= intscore1) {
             top_score_1.setText(new_score);
             top_score_2.setText(score1);
@@ -116,5 +99,26 @@ public class TopScoreActivity extends SetupActivity {
         else if (new_int_score >= intscore5) {
             top_score_5.setText(new_score);
         }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        score1 = top_score_1.getText().toString();
+        score2 = top_score_2.getText().toString();
+        score3 = top_score_3.getText().toString();
+        score4 = top_score_4.getText().toString();
+        score5 = top_score_5.getText().toString();
+
+        SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
+        SharedPreferences.Editor edt = pref.edit();
+        edt.putString("slot1", score1);
+        edt.putString("slot2", score2);
+        edt.putString("slot3", score3);
+        edt.putString("slot4", score4);
+        edt.putString("slot5", score5);
+
+        edt.commit();
     }
 }
