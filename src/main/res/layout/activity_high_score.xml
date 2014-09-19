@@ -4,24 +4,57 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/top_scores"
+        android:textSize="40sp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+    <TextView
         android:id="@+id/top1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="0"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@android:color/darker_gray"/>
     <TextView
         android:id="@+id/top2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="0"
+        android:textSize="30dp"
+        android:gravity="center"/>
     <TextView
         android:id="@+id/top3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="0"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@android:color/darker_gray" />
     <TextView
         android:id="@+id/top4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="0"
+        android:textSize="30dp"
+        android:gravity="center" />
     <TextView
         android:id="@+id/top5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="0"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@android:color/darker_gray"/>
 
 </LinearLayout>

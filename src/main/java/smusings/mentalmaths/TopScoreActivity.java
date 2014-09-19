@@ -68,6 +68,7 @@ public class TopScoreActivity extends SetupActivity {
     }
 
     public void setIntScores() {
+        //define ints
         intscore1 = Integer.valueOf(top_score_1.getText().toString());
         intscore2 = Integer.valueOf(top_score_2.getText().toString());
         intscore3 = Integer.valueOf(top_score_3.getText().toString());
@@ -105,20 +106,15 @@ public class TopScoreActivity extends SetupActivity {
     public void onPause(){
         super.onPause();
 
-        score1 = top_score_1.getText().toString();
-        score2 = top_score_2.getText().toString();
-        score3 = top_score_3.getText().toString();
-        score4 = top_score_4.getText().toString();
-        score5 = top_score_5.getText().toString();
-
         SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
         SharedPreferences.Editor edt = pref.edit();
-        edt.putString("slot1", score1);
-        edt.putString("slot2", score2);
-        edt.putString("slot3", score3);
-        edt.putString("slot4", score4);
-        edt.putString("slot5", score5);
+        edt.putString("slot1", top_score_1.getText().toString());
+        edt.putString("slot2", top_score_2.getText().toString());
+        edt.putString("slot3", top_score_3.getText().toString());
+        edt.putString("slot4", top_score_4.getText().toString());
+        edt.putString("slot5", top_score_5.getText().toString());
 
+        //commits the strings to the shared preferences
         edt.commit();
     }
 }

@@ -8,5 +8,6 @@
     <string name="multiplier">Multiplier</string>
     <string name="spree_count">Your current spree is at: </string>
     <string name="top_spree">Your largest spree was: </string>
+    <string name="top_scores">Top Scores</string>
 
 </resources>
