@@ -9,5 +9,8 @@
     <string name="spree_count">Your current spree is at: </string>
     <string name="top_spree">Your largest spree was: </string>
     <string name="top_scores">Top Scores</string>
+    <string name="save_score">Save Score?</string>
+    <string name="yes"> Yes </string>
+    <string name="no"> No </string>
 
 </resources>

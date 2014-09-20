@@ -30,6 +30,13 @@ public class TopScoreActivity extends SetupActivity {
     public int intscore5;
     public int new_int_score;
 
+    @Override
+    protected void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        if (intent.getStringExtra("methodName").equals("addNewScore")){
+            addNewScore();
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -57,7 +64,9 @@ public class TopScoreActivity extends SetupActivity {
         top_score_3.setText(score3);
         top_score_4.setText(score4);
         top_score_5.setText(score5);
+    }
 
+    public void addNewScore(){
         //our intent
         Intent intent = getIntent();
         new_score = intent.getStringExtra(MainActivity.intent_count);
@@ -66,6 +75,8 @@ public class TopScoreActivity extends SetupActivity {
 
         setIntScores();
     }
+
+
 
     public void setIntScores() {
         //define ints

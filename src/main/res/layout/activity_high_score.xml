@@ -8,7 +8,9 @@
         android:layout_height="wrap_content"
         android:text="@string/top_scores"
         android:textSize="40sp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-condensed"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -18,8 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="0"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:background="@android:color/darker_gray"/>
     <TextView
@@ -27,16 +28,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="0"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"/>
     <TextView
         android:id="@+id/top3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="0"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:background="@android:color/darker_gray" />
     <TextView
@@ -44,17 +43,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="0"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center" />
     <TextView
         android:id="@+id/top5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="0"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:background="@android:color/darker_gray"/>
-
 </LinearLayout>

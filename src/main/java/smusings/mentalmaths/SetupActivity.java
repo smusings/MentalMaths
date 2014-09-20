@@ -1,6 +1,7 @@
 package smusings.mentalmaths;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
@@ -15,7 +16,8 @@ import android.widget.Toast;
 import java.util.Random;
 
 
-public class SetupActivity extends Activity {
+public class SetupActivity extends Activity
+implements TopScoreDialog.TopScoreDialogListener{
 
     //declares almost everything we plan on using
     //made public for unit testing in the future
@@ -29,6 +31,7 @@ public class SetupActivity extends Activity {
     public SeekBar multiplierSeek;
     public LinearLayout multiplicandLayout;
     public LinearLayout multiplierLayout;
+    public String oldCount;
 
     //declares these for SharedPreferences
     public static final String OLD_COUNT = "MyOldCount";
@@ -187,7 +190,7 @@ public class SetupActivity extends Activity {
     }
 
     //the coutndown timer and what to do when when time = 0
-    CountDownTimer cdt = new CountDownTimer(30000, 1000) {
+    CountDownTimer cdt = new CountDownTimer(3000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
             timer.setText("Seconds Left: " + millisUntilFinished / 1000);
@@ -198,14 +201,13 @@ public class SetupActivity extends Activity {
             timer.setText("Seconds Left: " + "0");
             multiplicandLayout.setVisibility(View.VISIBLE);
             multiplierLayout.setVisibility(View.VISIBLE);
-            String oldCount = countRight.getText().toString();
+            oldCount = countRight.getText().toString();
             Toast.makeText(SetupActivity.this,
                     "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
             countRight.setText("0");
 
-            Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
-            intent.putExtra(intent_count, oldCount);
-            startActivity(intent);
+            showDialog();
+
         }
     };
 
@@ -214,5 +216,24 @@ public class SetupActivity extends Activity {
         int oldCount = Integer.valueOf(countRight.getText().toString());
         int newCount = oldCount + 1;
         countRight.setText(Integer.toString(newCount));
+    }
+
+    public void showDialog(){
+        DialogFragment dialogFragment = new TopScoreDialog();
+        dialogFragment.show(getFragmentManager(), "TopScoreDialog");
+    }
+
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialogFragment) {
+        Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
+        intent.putExtra(intent_count, oldCount);
+        intent.putExtra("methodName", "addNewScore");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialogFragment) {
+
     }
 }
