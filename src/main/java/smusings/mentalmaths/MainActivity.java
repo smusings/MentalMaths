@@ -17,19 +17,18 @@ public class MainActivity extends SetupActivity {
         setContentView(R.layout.activity_main);
 
         //defines everythign we need for this application
-        num1 = (TextView) findViewById(R.id.num1);
-        num2 = (TextView) findViewById(R.id.num2);
-        countRight = (TextView) findViewById(R.id.count_right);
+        multiplicand_tv = (TextView) findViewById(R.id.num1);
+        multiplier_tv = (TextView) findViewById(R.id.num2);
+        countRightAnswer = (TextView) findViewById(R.id.count_right);
         timer = (TextView) findViewById(R.id.timer);
-        high_score = (TextView) findViewById(R.id.high_score);
-        num_answer = (EditText) findViewById(R.id.num_result);
+        answer = (EditText) findViewById(R.id.num_result);
         multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
         multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
         multiplicandLayout = (LinearLayout) findViewById(R.id.multiplicant_layout);
         multiplierLayout = (LinearLayout) findViewById(R.id.multiplier_layout);
 
         //initial setup
-        countRight.setText("0");
+        countRightAnswer.setText("0");
         multiplicantSeek.setProgress(0);
         multiplierSeek.setProgress(0);
         seekBar_1_call();
@@ -40,7 +39,7 @@ public class MainActivity extends SetupActivity {
         //assigns listeners to interactable elements
         multiplicantSeek.setOnSeekBarChangeListener(seeker1);
         multiplierSeek.setOnSeekBarChangeListener(seeker2);
-        num_answer.setOnEditorActionListener(result_entered);
+        answer.setOnEditorActionListener(result_entered);
     }
 
 

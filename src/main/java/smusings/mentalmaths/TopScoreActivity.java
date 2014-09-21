@@ -10,6 +10,8 @@ public class TopScoreActivity extends SetupActivity {
 
     //shared preference string
     public static final String NEW_COUNT = "MyNewCount";
+    public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
+
 
     //values we plan on using
     public TextView top_score_1;
@@ -29,6 +31,10 @@ public class TopScoreActivity extends SetupActivity {
     public int intscore4;
     public int intscore5;
     public int new_int_score;
+/*
+
+    not working as well as i would hope
+    back to the drawing board for now
 
     @Override
     protected void onNewIntent(Intent intent){
@@ -37,6 +43,8 @@ public class TopScoreActivity extends SetupActivity {
             addNewScore();
         }
     }
+    */
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -64,21 +72,17 @@ public class TopScoreActivity extends SetupActivity {
         top_score_3.setText(score3);
         top_score_4.setText(score4);
         top_score_5.setText(score5);
+
+        addNewScore();
+
     }
 
     public void addNewScore(){
-        //our intent
         Intent intent = getIntent();
-        new_score = intent.getStringExtra(MainActivity.intent_count);
-
+        //our intent
+        new_score = intent.getStringExtra(SetupActivity.intent_count);
         new_int_score = Integer.valueOf(new_score);
 
-        setIntScores();
-    }
-
-
-
-    public void setIntScores() {
         //define ints
         intscore1 = Integer.valueOf(top_score_1.getText().toString());
         intscore2 = Integer.valueOf(top_score_2.getText().toString());
