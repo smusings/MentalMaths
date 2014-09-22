@@ -55,16 +55,16 @@ implements TopScoreDialog.TopScoreDialogListener{
             progressOne = progress;
 
             if (progressOne == 0) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(1, 9)));
+                multiplicand_tv.setText(Integer.toString(numSetUp(1, 10)));
             }
             else if (progressOne == 1) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(10, 99)));
+                multiplicand_tv.setText(Integer.toString(numSetUp(11, 99)));
             }
             else if (progressOne == 2) {
                 multiplicand_tv.setText(Integer.toString(numSetUp(100, 999)));
             }
             else if (progressOne == 3) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(100, 9999)));
+                multiplicand_tv.setText(Integer.toString(numSetUp(1000, 9999)));
             }
         }
 
@@ -189,7 +189,7 @@ implements TopScoreDialog.TopScoreDialogListener{
     }
 
     //the coutndown timer and what to do when when time = 0
-    CountDownTimer cdt = new CountDownTimer(30000, 1000) {
+    CountDownTimer cdt = new CountDownTimer(5000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
             timer.setText("Seconds Left: " + millisUntilFinished / 1000);
@@ -205,10 +205,8 @@ implements TopScoreDialog.TopScoreDialogListener{
                     "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
             countRightAnswer.setText("0");
 
-            Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
-            intent.putExtra(intent_count, oldCount);
-            intent.putExtra("methodName", "addNewScore");
-            startActivity(intent);
+            showDialog();
+
 
         }
     };
@@ -232,9 +230,9 @@ implements TopScoreDialog.TopScoreDialogListener{
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
+
         Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
-        intent.putExtra(intent_count, "3");
-        intent.putExtra("methodName", "addNewScore");
+        intent.putExtra(intent_count, oldCount);
         startActivity(intent);
     }
 
@@ -242,4 +240,5 @@ implements TopScoreDialog.TopScoreDialogListener{
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
 
     }
+
 }

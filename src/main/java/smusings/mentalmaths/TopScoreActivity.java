@@ -31,20 +31,6 @@ public class TopScoreActivity extends SetupActivity {
     public int intscore4;
     public int intscore5;
     public int new_int_score;
-/*
-
-    not working as well as i would hope
-    back to the drawing board for now
-
-    @Override
-    protected void onNewIntent(Intent intent){
-        super.onNewIntent(intent);
-        if (intent.getStringExtra("methodName").equals("addNewScore")){
-            addNewScore();
-        }
-    }
-    */
-
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -116,10 +102,9 @@ public class TopScoreActivity extends SetupActivity {
             top_score_5.setText(new_score);
         }
     }
-
     @Override
-    public void onPause(){
-        super.onPause();
+    public void onDestroy(){
+        super.onDestroy();
 
         SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
         SharedPreferences.Editor edt = pref.edit();
