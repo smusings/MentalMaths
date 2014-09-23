@@ -32,6 +32,9 @@ implements TopScoreDialog.TopScoreDialogListener{
     public LinearLayout multiplierLayout;
     public String oldCount;
 
+
+
+
     //declares these for SharedPreferences
     public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
 
@@ -143,7 +146,9 @@ implements TopScoreDialog.TopScoreDialogListener{
                     setCountPlusOne();
                     seekBar_1_call();
                     seekBar_2_call();
+                    cdt.cancel();
                     cdt.start();
+
                 }
 
                 //if wrong say wrong and do nothign else
@@ -194,7 +199,6 @@ implements TopScoreDialog.TopScoreDialogListener{
         public void onTick(long millisUntilFinished) {
             timer.setText("Seconds Left: " + millisUntilFinished / 1000);
         }
-
         @Override
         public void onFinish() {
             timer.setText("Seconds Left: " + "0");
