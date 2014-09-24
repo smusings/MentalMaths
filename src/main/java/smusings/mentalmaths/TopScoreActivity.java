@@ -10,7 +10,6 @@ public class TopScoreActivity extends SetupActivity {
 
     //shared preference string
     public static final String NEW_COUNT = "MyNewCount";
-    public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
 
 
     //values we plan on using

@@ -5,4 +5,7 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/action_top_scores"
+        android:title="@string/top_scores"
+        android:showAsAction="never" />
 </menu>
