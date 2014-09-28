@@ -42,7 +42,6 @@ implements TopScoreDialog.TopScoreDialogListener{
     //gives us our pseudo-random numbers
     public static int numSetUp(int min, int max) {
         Random random = new Random();
-
         int randomInt = random.nextInt(max - min) + min;
 
         return randomInt;
@@ -57,18 +56,7 @@ implements TopScoreDialog.TopScoreDialogListener{
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             progressOne = progress;
 
-            if (progressOne == 0) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(1, 10)));
-            }
-            else if (progressOne == 1) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(11, 99)));
-            }
-            else if (progressOne == 2) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(100, 999)));
-            }
-            else if (progressOne == 3) {
-                multiplicand_tv.setText(Integer.toString(numSetUp(1000, 9999)));
-            }
+            seekBar_random(multiplicand_tv, multiplicantSeek);
         }
 
         @Override
@@ -89,18 +77,8 @@ implements TopScoreDialog.TopScoreDialogListener{
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             progressTwo = progress;
 
-            if (progressTwo == 0) {
-                multiplier_tv.setText(Integer.toString(numSetUp(1, 9)));
-            }
-            else if (progressTwo == 1) {
-                multiplier_tv.setText(Integer.toString(numSetUp(10, 99)));
-            }
-            else if (progressTwo == 2) {
-                multiplier_tv.setText(Integer.toString(numSetUp(100, 999)));
-            }
-            else if (progressTwo == 3) {
-                multiplier_tv.setText(Integer.toString(numSetUp(100, 9999)));
-            }
+
+            seekBar_random(multiplier_tv, multiplierSeek);
         }
 
         @Override
@@ -144,8 +122,8 @@ implements TopScoreDialog.TopScoreDialogListener{
                     Toast.makeText(SetupActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                     answer.setText("");
                     setCountPlusOne();
-                    seekBar_1_call();
-                    seekBar_2_call();
+                    seekBar_random(multiplicand_tv, multiplicantSeek);
+                    seekBar_random(multiplier_tv, multiplierSeek);
                     cdt.cancel();
                     cdt.start();
 
@@ -163,35 +141,22 @@ implements TopScoreDialog.TopScoreDialogListener{
 
 
     //used to give new numbers if correct
-    public void seekBar_1_call() {
-        if (multiplicantSeek.getProgress() == 0) {
-            multiplicand_tv.setText(Integer.toString(numSetUp(1, 9)));
+    public void seekBar_random(TextView tv, SeekBar seekBar){
+        if (seekBar.getProgress() == 0) {
+            tv.setText(Integer.toString(numSetUp(1, 12)));
         }
-        else if (multiplicantSeek.getProgress() == 1) {
-            multiplicand_tv.setText(Integer.toString(numSetUp(10, 99)));
+        else if (seekBar.getProgress() == 1) {
+            tv.setText(Integer.toString(numSetUp(13, 99)));
         }
-        else if (multiplicantSeek.getProgress() == 2) {
-            multiplicand_tv.setText(Integer.toString(numSetUp(100, 999)));
+        else if (seekBar.getProgress() == 2) {
+            tv.setText(Integer.toString(numSetUp(100, 999)));
         }
-        else if (multiplicantSeek.getProgress() == 3) {
-            multiplicand_tv.setText(Integer.toString(numSetUp(1000, 9999)));
+        else if (seekBar.getProgress() == 3) {
+            tv.setText(Integer.toString(numSetUp(1000, 9999)));
         }
     }
 
-    public void seekBar_2_call() {
-        if (multiplierSeek.getProgress() == 0) {
-            multiplier_tv.setText(Integer.toString(numSetUp(1, 9)));
-        }
-        else if (multiplierSeek.getProgress() == 1) {
-            multiplier_tv.setText(Integer.toString(numSetUp(10, 99)));
-        }
-        else if (multiplierSeek.getProgress() == 2) {
-            multiplier_tv.setText(Integer.toString(numSetUp(100, 999)));
-        }
-        else if (multiplierSeek.getProgress() == 3) {
-            multiplier_tv.setText(Integer.toString(numSetUp(1000, 9999)));
-        }
-    }
+
 
     //the coutndown timer and what to do when when time = 0
     CountDownTimer cdt = new CountDownTimer(5000, 1000) {

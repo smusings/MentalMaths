@@ -32,8 +32,8 @@ public class MainActivity extends SetupActivity {
         countRightAnswer.setText("0");
         multiplicantSeek.setProgress(0);
         multiplierSeek.setProgress(0);
-        seekBar_1_call();
-        seekBar_2_call();
+        seekBar_random(multiplicand_tv, multiplicantSeek);
+        seekBar_random(multiplier_tv, multiplierSeek);
 
 
 
