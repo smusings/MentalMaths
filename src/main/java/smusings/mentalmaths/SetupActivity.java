@@ -47,48 +47,28 @@ implements TopScoreDialog.TopScoreDialogListener{
         return randomInt;
     }
 
-    //a listener for seekbar
-    SeekBar.OnSeekBarChangeListener seeker1 = new SeekBar.OnSeekBarChangeListener() {
-        int progressOne = 0;
-
-        //if progress changes we do one of four things
+    //seek bar listener
+    SeekBar.OnSeekBarChangeListener seeker = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            progressOne = progress;
+            int progressSeek = progress;
 
-            seekBar_random(multiplicand_tv, multiplicantSeek);
+            if (seekBar == multiplicantSeek){
+                seekBar_random(multiplicand_tv, multiplicantSeek);
+            }
+            else if (seekBar == multiplierSeek){
+                seekBar_random(multiplier_tv, multiplierSeek);
+            }
         }
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-            //TODO: Auto-generated
+
         }
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            //TODO: Auto-generated
-        }
-    };
 
-    SeekBar.OnSeekBarChangeListener seeker2 = new SeekBar.OnSeekBarChangeListener() {
-        int progressTwo = 0;
-
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            progressTwo = progress;
-
-
-            seekBar_random(multiplier_tv, multiplierSeek);
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-            //TODO: Auto-generated
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            //TODO: Auto-generated
         }
     };
 
@@ -101,10 +81,6 @@ implements TopScoreDialog.TopScoreDialogListener{
                             (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
 
-
-                //on done we hide the seekbars
-                multiplicandLayout.setVisibility(View.GONE);
-                multiplierLayout.setVisibility(View.GONE);
 
 
                 //set up the ints to work properly
@@ -119,14 +95,19 @@ implements TopScoreDialog.TopScoreDialogListener{
 
                 //if correct, we say correct, add one to count and restart the countdown
                 else if (Integer.valueOf(answer.getText().toString()) == result) {
+                    //on correct
+                    multiplicandLayout.setVisibility(View.GONE);
+                    multiplierLayout.setVisibility(View.GONE);
+
+                    //if correct, say it is, then clear the text, add one to the count, and give two new numbers.
                     Toast.makeText(SetupActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                     answer.setText("");
                     setCountPlusOne();
                     seekBar_random(multiplicand_tv, multiplicantSeek);
                     seekBar_random(multiplier_tv, multiplierSeek);
+                    //cancel first otherwise we trigger onFinish many times
                     cdt.cancel();
                     cdt.start();
-
                 }
 
                 //if wrong say wrong and do nothign else
@@ -199,7 +180,6 @@ implements TopScoreDialog.TopScoreDialogListener{
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
-
         Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
         intent.putExtra(intent_count, oldCount);
         startActivity(intent);
@@ -207,7 +187,5 @@ implements TopScoreDialog.TopScoreDialogListener{
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
-
     }
-
 }

@@ -38,8 +38,8 @@ public class MainActivity extends SetupActivity {
 
 
         //assigns listeners to interactable elements
-        multiplicantSeek.setOnSeekBarChangeListener(seeker1);
-        multiplierSeek.setOnSeekBarChangeListener(seeker2);
+        multiplicantSeek.setOnSeekBarChangeListener(seeker);
+        multiplierSeek.setOnSeekBarChangeListener(seeker);
         answer.setOnEditorActionListener(result_entered);
     }
 
