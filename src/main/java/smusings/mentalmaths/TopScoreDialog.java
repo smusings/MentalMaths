@@ -10,12 +10,6 @@ import android.view.LayoutInflater;
 
 public class TopScoreDialog extends DialogFragment {
 
-    static TopScoreDialog newInstance(){
-        return new TopScoreDialog();
-    }
-
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -56,7 +50,6 @@ public class TopScoreDialog extends DialogFragment {
         catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                 + " must impliment NoticeDialogListener");
-
         }
     }
 }

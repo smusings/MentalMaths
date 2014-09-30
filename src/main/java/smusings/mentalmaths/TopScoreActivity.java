@@ -58,8 +58,8 @@ public class TopScoreActivity extends SetupActivity {
         top_score_4.setText(score4);
         top_score_5.setText(score5);
 
+        //calls a method
         addNewScore();
-
     }
 
     public void addNewScore(){
@@ -75,6 +75,7 @@ public class TopScoreActivity extends SetupActivity {
         intscore4 = Integer.valueOf(top_score_4.getText().toString());
         intscore5 = Integer.valueOf(top_score_5.getText().toString());
 
+        //depending on how big the number is we can switch things around
         if (new_int_score >= intscore1) {
             top_score_1.setText(new_score);
             top_score_2.setText(score1);

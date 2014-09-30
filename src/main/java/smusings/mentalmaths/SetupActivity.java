@@ -32,12 +32,8 @@ implements TopScoreDialog.TopScoreDialogListener{
     public LinearLayout multiplierLayout;
     public String oldCount;
 
-
-
-
     //declares these for SharedPreferences
     public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
-
 
     //gives us our pseudo-random numbers
     public static int numSetUp(int min, int max) {
@@ -80,8 +76,6 @@ implements TopScoreDialog.TopScoreDialogListener{
                     ((event.isShiftPressed() == false)) &&
                             (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
-
-
 
                 //set up the ints to work properly
                 int result=Integer.valueOf(multiplicand_tv.getText().toString()) *
@@ -156,8 +150,6 @@ implements TopScoreDialog.TopScoreDialogListener{
             countRightAnswer.setText("0");
 
             showDialog();
-
-
         }
     };
 
@@ -168,18 +160,15 @@ implements TopScoreDialog.TopScoreDialogListener{
         countRightAnswer.setText(Integer.toString(newCount));
     }
 
-    /*
-        set up for dialog to ask if we want to add a high score or not
-     */
-
+    //set up for dialog to ask if we want to add a high score or not
     public void showDialog(){
         DialogFragment dialogFragment = new TopScoreDialog();
         dialogFragment.show(getFragmentManager(), "TopScoreDialog");
     }
 
-
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
+        //laucnhes a new intent of the top score
         Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
         intent.putExtra(intent_count, oldCount);
         startActivity(intent);
