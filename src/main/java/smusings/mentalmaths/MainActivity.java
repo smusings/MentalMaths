@@ -2,8 +2,9 @@ package smusings.mentalmaths;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -27,6 +28,8 @@ public class MainActivity extends SetupActivity {
         multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
         multiplicandLayout = (LinearLayout) findViewById(R.id.multiplicant_layout);
         multiplierLayout = (LinearLayout) findViewById(R.id.multiplier_layout);
+        saveScoreButton = (Button) findViewById(R.id.buttonSave);
+        saveCancelButton = (Button) findViewById(R.id.buttonCancel);
 
         //initial setup
         countRightAnswer.setText("0");
@@ -34,18 +37,15 @@ public class MainActivity extends SetupActivity {
         multiplierSeek.setProgress(0);
         seekBar_random(multiplicand_tv, multiplicantSeek);
         seekBar_random(multiplier_tv, multiplierSeek);
+        saveScoreButton.setVisibility(View.GONE);
+        saveCancelButton.setVisibility(View.GONE);
 
         //assigns listeners to interactable elements
         multiplicantSeek.setOnSeekBarChangeListener(seeker);
         multiplierSeek.setOnSeekBarChangeListener(seeker);
         answer.setOnEditorActionListener(result_entered);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        saveScoreButton.setOnClickListener(buttonClick);
+        saveCancelButton.setOnClickListener(buttonClick);
     }
 
     @Override

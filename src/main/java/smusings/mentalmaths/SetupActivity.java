@@ -1,12 +1,12 @@
 package smusings.mentalmaths;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -16,8 +16,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 
-public class SetupActivity extends Activity
-implements TopScoreDialog.TopScoreDialogListener{
+public class SetupActivity extends Activity {
 
     //declares almost everything we plan on using
     //made public for testing in the future
@@ -31,6 +30,8 @@ implements TopScoreDialog.TopScoreDialogListener{
     public LinearLayout multiplicandLayout;
     public LinearLayout multiplierLayout;
     public String oldCount;
+    public Button saveScoreButton;
+    public Button saveCancelButton;
 
     //declares these for SharedPreferences
     public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
@@ -149,7 +150,9 @@ implements TopScoreDialog.TopScoreDialogListener{
                     "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
             countRightAnswer.setText("0");
 
-            showDialog();
+            //show the score buttons
+            saveScoreButton.setVisibility(View.VISIBLE);
+            saveCancelButton.setVisibility(View.VISIBLE);
         }
     };
 
@@ -160,21 +163,21 @@ implements TopScoreDialog.TopScoreDialogListener{
         countRightAnswer.setText(Integer.toString(newCount));
     }
 
-    //set up for dialog to ask if we want to add a high score or not
-    public void showDialog(){
-        DialogFragment dialogFragment = new TopScoreDialog();
-        dialogFragment.show(getFragmentManager(), "TopScoreDialog");
-    }
+    View.OnClickListener buttonClick = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
 
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialogFragment) {
-        //laucnhes a new intent of the top score
-        Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
-        intent.putExtra(intent_count, oldCount);
-        startActivity(intent);
-    }
+            if (((Button) v) == saveScoreButton){
+                //laucnhes a new intent of the top score
+                Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
+                intent.putExtra(intent_count, oldCount);
+                startActivity(intent);
+            }
+            else if (((Button) v) == saveCancelButton){
 
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialogFragment) {
-    }
+            }
+            saveScoreButton.setVisibility(View.GONE);
+            saveCancelButton.setVisibility(View.GONE);
+        }
+    };
 }
