@@ -20,7 +20,7 @@ public class SetupActivity extends Activity
 implements TopScoreDialog.TopScoreDialogListener{
 
     //declares almost everything we plan on using
-    //made public for unit testing in the future
+    //made public for testing in the future
     public TextView multiplicand_tv;
     public TextView multiplier_tv;
     public TextView countRightAnswer;

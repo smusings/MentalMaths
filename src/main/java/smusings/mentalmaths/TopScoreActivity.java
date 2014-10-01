@@ -106,6 +106,7 @@ public class TopScoreActivity extends SetupActivity {
     public void onDestroy(){
         super.onDestroy();
 
+        //creates the sharedperference and saves the values to it
         SharedPreferences pref = this.getSharedPreferences(NEW_COUNT, 0);
         SharedPreferences.Editor edt = pref.edit();
         edt.putString("slot1", top_score_1.getText().toString());
