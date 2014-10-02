@@ -77,6 +77,21 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"/>
     <LinearLayout
+        android:id="@+id/topScoreLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/top_spree"/>
+        <TextView
+            android:id="@+id/latestScore"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="15sp"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/multiplicant_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -121,12 +136,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
             android:id="@+id/buttonSave"
             android:text="@string/Save"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <Button
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
             android:id="@+id/buttonCancel"
             android:text="@string/Cancel"
             android:layout_weight="1"

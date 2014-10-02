@@ -24,11 +24,13 @@ public class SetupActivity extends Activity {
     public TextView multiplier_tv;
     public TextView countRightAnswer;
     public TextView timer;
+    public TextView latestScore;
     public EditText answer;
     public SeekBar multiplicantSeek;
     public SeekBar multiplierSeek;
     public LinearLayout multiplicandLayout;
     public LinearLayout multiplierLayout;
+    public LinearLayout scoreLayout;
     public String oldCount;
     public Button saveScoreButton;
     public Button saveCancelButton;
@@ -146,13 +148,13 @@ public class SetupActivity extends Activity {
             multiplicandLayout.setVisibility(View.VISIBLE);
             multiplierLayout.setVisibility(View.VISIBLE);
             oldCount = countRightAnswer.getText().toString();
-            Toast.makeText(SetupActivity.this,
-                    "Your streak ends at: " + oldCount + "!", Toast.LENGTH_LONG).show();
+            latestScore.setText(oldCount);
             countRightAnswer.setText("0");
 
             //show the score buttons
             saveScoreButton.setVisibility(View.VISIBLE);
             saveCancelButton.setVisibility(View.VISIBLE);
+            scoreLayout.setVisibility(View.VISIBLE);
         }
     };
 
@@ -178,6 +180,7 @@ public class SetupActivity extends Activity {
             }
             saveScoreButton.setVisibility(View.GONE);
             saveCancelButton.setVisibility(View.GONE);
+            scoreLayout.setVisibility(View.GONE);
         }
     };
 }

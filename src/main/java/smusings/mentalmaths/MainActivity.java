@@ -23,11 +23,13 @@ public class MainActivity extends SetupActivity {
         multiplier_tv = (TextView) findViewById(R.id.num2);
         countRightAnswer = (TextView) findViewById(R.id.count_right);
         timer = (TextView) findViewById(R.id.timer);
+        latestScore = (TextView) findViewById(R.id.latestScore);
         answer = (EditText) findViewById(R.id.num_result);
         multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
         multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
         multiplicandLayout = (LinearLayout) findViewById(R.id.multiplicant_layout);
         multiplierLayout = (LinearLayout) findViewById(R.id.multiplier_layout);
+        scoreLayout = (LinearLayout) findViewById(R.id.topScoreLayout);
         saveScoreButton = (Button) findViewById(R.id.buttonSave);
         saveCancelButton = (Button) findViewById(R.id.buttonCancel);
 
@@ -37,6 +39,7 @@ public class MainActivity extends SetupActivity {
         multiplierSeek.setProgress(0);
         seekBar_random(multiplicand_tv, multiplicantSeek);
         seekBar_random(multiplier_tv, multiplierSeek);
+        scoreLayout.setVisibility(View.GONE);
         saveScoreButton.setVisibility(View.GONE);
         saveCancelButton.setVisibility(View.GONE);
 
