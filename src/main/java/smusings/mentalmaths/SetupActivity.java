@@ -13,8 +13,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Random;
-
 
 public class SetupActivity extends Activity {
 
@@ -40,10 +38,7 @@ public class SetupActivity extends Activity {
 
     //gives us our pseudo-random numbers
     public static int numSetUp(int min, int max) {
-        Random random = new Random();
-        int randomInt = random.nextInt(max - min) + min;
-
-        return randomInt;
+        return (int)(Math.random() * ((max - min) + 1) + min);
     }
 
     //seek bar listener

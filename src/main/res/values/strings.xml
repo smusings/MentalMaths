@@ -8,7 +8,7 @@
     <string name="multiplicand">Multiplicand</string>
     <string name="multiplier">Multiplier</string>
     <string name="spree_count">Your current spree is at: </string>
-    <string name="top_spree">Your largest spree was: </string>
+    <string name="top_spree">Your last spree ended at: </string>
     <string name="top_scores">Top Scores</string>
     <string name="save_score">Save Score?</string>
     <string name="Save">Save</string>

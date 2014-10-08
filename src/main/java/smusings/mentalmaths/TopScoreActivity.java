@@ -11,7 +11,6 @@ public class TopScoreActivity extends SetupActivity {
     //shared preference string
     public static final String NEW_COUNT = "MyNewCount";
 
-
     //values we plan on using
     public TextView top_score_1;
     public TextView top_score_2;
