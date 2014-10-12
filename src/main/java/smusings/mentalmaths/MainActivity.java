@@ -1,5 +1,6 @@
 package smusings.mentalmaths;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,13 +65,13 @@ public class MainActivity extends SetupActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        /*
+
         if (id == R.id.action_top_scores){
             cdt.cancel();
             Intent topScoreIntent = new Intent(MainActivity.this, TopScoreActivity.class);
             this.startActivity(topScoreIntent);
         }
-        */
+
         return super.onOptionsItemSelected(item);
     }
 }

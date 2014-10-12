@@ -63,7 +63,11 @@ implements ResetConfirmDialog.ResetConfirmListener{
         top_score_5.setText(score5);
 
         //calls a method
-        addNewScore();
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null){
+            addNewScore();
+        }
     }
 
     public void addNewScore(){
