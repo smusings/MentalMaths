@@ -1,7 +1,8 @@
 package smusings.mentalmaths;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,12 @@ public class MainActivity extends SetupActivity {
         saveScoreButton.setOnClickListener(buttonClick);
         saveCancelButton.setOnClickListener(buttonClick);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -57,11 +64,13 @@ public class MainActivity extends SetupActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        /*
         if (id == R.id.action_top_scores){
             cdt.cancel();
             Intent topScoreIntent = new Intent(MainActivity.this, TopScoreActivity.class);
             this.startActivity(topScoreIntent);
         }
+        */
         return super.onOptionsItemSelected(item);
     }
 }

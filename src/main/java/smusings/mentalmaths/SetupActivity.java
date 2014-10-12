@@ -45,8 +45,6 @@ public class SetupActivity extends Activity {
     SeekBar.OnSeekBarChangeListener seeker = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            int progressSeek = progress;
-
             if (seekBar == multiplicantSeek){
                 seekBar_random(multiplicand_tv, multiplicantSeek);
             }
@@ -71,7 +69,7 @@ public class SetupActivity extends Activity {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if ((actionId == EditorInfo.IME_ACTION_DONE) ||
-                    ((event.isShiftPressed() == false)) &&
+                    ((!event.isShiftPressed())) &&
                             (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
 
@@ -164,14 +162,14 @@ public class SetupActivity extends Activity {
         @Override
         public void onClick(View v) {
 
-            if (((Button) v) == saveScoreButton){
+            if (v == saveScoreButton){
                 //laucnhes a new intent of the top score
                 Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
                 intent.putExtra(intent_count, oldCount);
                 startActivity(intent);
             }
-            else if (((Button) v) == saveCancelButton){
-
+            else if (v == saveCancelButton){
+                //do nothing
             }
             saveScoreButton.setVisibility(View.GONE);
             saveCancelButton.setVisibility(View.GONE);

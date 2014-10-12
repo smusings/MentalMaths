@@ -1,12 +1,17 @@
 package smusings.mentalmaths;
 
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-public class TopScoreActivity extends SetupActivity {
+public class TopScoreActivity extends SetupActivity
+implements ResetConfirmDialog.ResetConfirmListener{
 
     //shared preference string
     public static final String NEW_COUNT = "MyNewCount";
@@ -116,5 +121,43 @@ public class TopScoreActivity extends SetupActivity {
 
         //commits the strings to the shared preferences
         edt.commit();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.topscore, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_top_scores){
+            showDialog();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    void showDialog(){
+        DialogFragment newFragment = ResetConfirmDialog.newInstance();
+        newFragment.show(getFragmentManager(), "dialog");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        top_score_1.setText("");
+        top_score_2.setText("");
+        top_score_3.setText("");
+        top_score_4.setText("");
+        top_score_5.setText("");
+
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
     }
 }
