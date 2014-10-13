@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 public class SetupActivity extends Activity {
 
+    //declares these for SharedPreferences
+    public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
     //declares almost everything we plan on using
     //made public for testing in the future
     public TextView multiplicand_tv;
@@ -33,22 +35,13 @@ public class SetupActivity extends Activity {
     public Button saveScoreButton;
     public Button saveCancelButton;
 
-    //declares these for SharedPreferences
-    public static final String intent_count = "smusings.mentalmaths.HIGHSCORE";
-
-    //gives us our pseudo-random numbers
-    public static int numSetUp(int min, int max) {
-        return (int)(Math.random() * ((max - min) + 1) + min);
-    }
-
     //seek bar listener
     SeekBar.OnSeekBarChangeListener seeker = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (seekBar == multiplicantSeek){
+            if (seekBar == multiplicantSeek) {
                 seekBar_random(multiplicand_tv, multiplicantSeek);
-            }
-            else if (seekBar == multiplierSeek){
+            } else if (seekBar == multiplierSeek) {
                 seekBar_random(multiplier_tv, multiplierSeek);
             }
         }
@@ -74,7 +67,7 @@ public class SetupActivity extends Activity {
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
 
                 //set up the ints to work properly
-                int result=Integer.valueOf(multiplicand_tv.getText().toString()) *
+                int result = Integer.valueOf(multiplicand_tv.getText().toString()) *
                         Integer.valueOf(multiplier_tv.getText().toString());
 
                 //make it error proof
@@ -110,31 +103,13 @@ public class SetupActivity extends Activity {
         }
     };
 
-
-    //used to give new numbers if correct
-    public void seekBar_random(TextView tv, SeekBar seekBar){
-        if (seekBar.getProgress() == 0) {
-            tv.setText(Integer.toString(numSetUp(1, 12)));
-        }
-        else if (seekBar.getProgress() == 1) {
-            tv.setText(Integer.toString(numSetUp(13, 99)));
-        }
-        else if (seekBar.getProgress() == 2) {
-            tv.setText(Integer.toString(numSetUp(100, 999)));
-        }
-        else if (seekBar.getProgress() == 3) {
-            tv.setText(Integer.toString(numSetUp(1000, 9999)));
-        }
-    }
-
-
-
     //the coutndown timer and what to do when when time = 0
     CountDownTimer cdt = new CountDownTimer(5000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
             timer.setText("Seconds Left: " + millisUntilFinished / 1000);
         }
+
         @Override
         public void onFinish() {
             timer.setText("Seconds Left: " + "0");
@@ -151,29 +126,48 @@ public class SetupActivity extends Activity {
         }
     };
 
+    //catchall button listener.
+    View.OnClickListener buttonClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            if (v == saveScoreButton) {
+                //laucnhes a new intent of the top score
+                Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
+                intent.putExtra(intent_count, oldCount);
+                startActivity(intent);
+            } else if (v == saveCancelButton) {
+                //do nothing
+            }
+            //hides everything
+            saveScoreButton.setVisibility(View.GONE);
+            saveCancelButton.setVisibility(View.GONE);
+            scoreLayout.setVisibility(View.GONE);
+        }
+    };
+
+    //gives us our pseudo-random numbers
+    public static int numSetUp(int min, int max) {
+        return (int) (Math.random() * ((max - min) + 1) + min);
+    }
+
+    //used to give new numbers if correct
+    public void seekBar_random(TextView tv, SeekBar seekBar) {
+        if (seekBar.getProgress() == 0) {
+            tv.setText(Integer.toString(numSetUp(1, 12)));
+        } else if (seekBar.getProgress() == 1) {
+            tv.setText(Integer.toString(numSetUp(13, 99)));
+        } else if (seekBar.getProgress() == 2) {
+            tv.setText(Integer.toString(numSetUp(100, 999)));
+        } else if (seekBar.getProgress() == 3) {
+            tv.setText(Integer.toString(numSetUp(1000, 9999)));
+        }
+    }
+
     //adds one to the count
     public void setCountPlusOne() {
         int oldCount = Integer.valueOf(countRightAnswer.getText().toString());
         int newCount = oldCount + 1;
         countRightAnswer.setText(Integer.toString(newCount));
     }
-
-    View.OnClickListener buttonClick = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-
-            if (v == saveScoreButton){
-                //laucnhes a new intent of the top score
-                Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
-                intent.putExtra(intent_count, oldCount);
-                startActivity(intent);
-            }
-            else if (v == saveCancelButton){
-                //do nothing
-            }
-            saveScoreButton.setVisibility(View.GONE);
-            saveCancelButton.setVisibility(View.GONE);
-            scoreLayout.setVisibility(View.GONE);
-        }
-    };
 }

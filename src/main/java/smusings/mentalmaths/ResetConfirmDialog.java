@@ -9,19 +9,14 @@ import android.os.Bundle;
 
 public class ResetConfirmDialog extends DialogFragment {
 
-    public static ResetConfirmDialog newInstance(){
+    ResetConfirmListener mListener;
+
+    public static ResetConfirmDialog newInstance() {
         return new ResetConfirmDialog();
     }
 
-    public interface ResetConfirmListener{
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
-    }
-
-    ResetConfirmListener mListener;
-
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new AlertDialog.Builder(getActivity())
                 .setTitle("Reset Scores")
                 .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
@@ -40,14 +35,18 @@ public class ResetConfirmDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity){
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
             mListener = (ResetConfirmListener) activity;
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-        + " must implement ResterConfirmListener");
+                    + " must implement ResterConfirmListener");
         }
+    }
+
+    public interface ResetConfirmListener {
+        public void onDialogPositiveClick(DialogFragment dialog);
+        public void onDialogNegativeClick(DialogFragment dialog);
     }
 }

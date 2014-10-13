@@ -52,8 +52,9 @@ public class MainActivity extends SetupActivity {
         saveScoreButton.setOnClickListener(buttonClick);
         saveCancelButton.setOnClickListener(buttonClick);
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main, menu);
         return true;
@@ -66,7 +67,7 @@ public class MainActivity extends SetupActivity {
             return true;
         }
 
-        if (id == R.id.action_top_scores){
+        if (id == R.id.action_top_scores) {
             cdt.cancel();
             Intent topScoreIntent = new Intent(MainActivity.this, TopScoreActivity.class);
             this.startActivity(topScoreIntent);

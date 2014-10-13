@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class TopScoreActivity extends SetupActivity
-implements ResetConfirmDialog.ResetConfirmListener{
+        implements ResetConfirmDialog.ResetConfirmListener {
 
     //shared preference string
     public static final String NEW_COUNT = "MyNewCount";
@@ -36,7 +36,7 @@ implements ResetConfirmDialog.ResetConfirmListener{
     public int new_int_score;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
@@ -65,12 +65,12 @@ implements ResetConfirmDialog.ResetConfirmListener{
         //calls a method
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras != null){
+        if (extras != null) {
             addNewScore();
         }
     }
 
-    public void addNewScore(){
+    public void addNewScore() {
         Intent intent = getIntent();
         //our intent
         new_score = intent.getStringExtra(SetupActivity.intent_count);
@@ -90,28 +90,25 @@ implements ResetConfirmDialog.ResetConfirmListener{
             top_score_3.setText(score2);
             top_score_4.setText(score3);
             top_score_5.setText(score4);
-        }
-        else if (new_int_score >= intscore2) {
+        } else if (new_int_score >= intscore2) {
             top_score_2.setText(new_score);
             top_score_3.setText(score2);
             top_score_4.setText(score3);
             top_score_5.setText(score4);
-        }
-        else if (new_int_score >= intscore3) {
+        } else if (new_int_score >= intscore3) {
             top_score_3.setText(new_score);
             top_score_4.setText(score3);
             top_score_5.setText(score4);
-        }
-        else if (new_int_score >= intscore4) {
+        } else if (new_int_score >= intscore4) {
             top_score_4.setText(new_score);
             top_score_5.setText(score4);
-        }
-        else if (new_int_score >= intscore5) {
+        } else if (new_int_score >= intscore5) {
             top_score_5.setText(new_score);
         }
     }
+
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
 
         //creates the sharedperference and saves the values to it
@@ -129,7 +126,7 @@ implements ResetConfirmDialog.ResetConfirmListener{
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.topscore, menu);
         return true;
@@ -138,25 +135,25 @@ implements ResetConfirmDialog.ResetConfirmListener{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_top_scores){
+        if (id == R.id.action_top_scores) {
             showDialog();
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    void showDialog(){
+    void showDialog() {
         DialogFragment newFragment = ResetConfirmDialog.newInstance();
         newFragment.show(getFragmentManager(), "dialog");
     }
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        top_score_1.setText("");
-        top_score_2.setText("");
-        top_score_3.setText("");
-        top_score_4.setText("");
-        top_score_5.setText("");
+        top_score_1.setText("0");
+        top_score_2.setText("0");
+        top_score_3.setText("0");
+        top_score_4.setText("0");
+        top_score_5.setText("0");
 
     }
 
