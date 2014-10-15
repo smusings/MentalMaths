@@ -91,7 +91,7 @@
             android:textSize="20sp"
             android:inputType="number"
             android:gravity="center"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionDone|flagNoExtractUi"
             android:background="@color/White"
             android:padding="10dp"/>
         <View
