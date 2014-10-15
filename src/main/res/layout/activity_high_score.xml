@@ -6,6 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/LightCyan">
         <TextView
+        android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/top_scores"
@@ -52,5 +53,5 @@
             android:layout_weight="1"
             android:textSize="30sp"
             android:gravity="center"
-            android:background="@color/SteelBlue">
+            android:background="@color/SteelBlue"/>
         </LinearLayout>
