@@ -154,7 +154,6 @@ public class TopScoreActivity extends SetupActivity
         top_score_3.setText("0");
         top_score_4.setText("0");
         top_score_5.setText("0");
-
     }
 
     @Override
