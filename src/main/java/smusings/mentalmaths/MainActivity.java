@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -51,6 +53,18 @@ public class MainActivity extends SetupActivity {
         answer.setOnEditorActionListener(result_entered);
         saveScoreButton.setOnClickListener(buttonClick);
         saveCancelButton.setOnClickListener(buttonClick);
+
+        //scrollview hack
+        ScrollView sc1 = (ScrollView)findViewById(R.id.ScrollView1);
+        sc1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (answer.hasFocus()){
+                    answer.clearFocus();
+                }
+                return false;
+            }
+        });
     }
 
     @Override

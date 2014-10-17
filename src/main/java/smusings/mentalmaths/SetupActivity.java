@@ -107,7 +107,7 @@ public class SetupActivity extends Activity {
     CountDownTimer cdt = new CountDownTimer(5000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-            timer.setText("Seconds Left: " + millisUntilFinished / 1000);
+            timer.setText("" + millisUntilFinished / 1000);
         }
 
         @Override
