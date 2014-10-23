@@ -22,7 +22,7 @@ public class MainActivity extends SetupActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //defines everythign we need for this application
+        //defines EVERYTHING we need for this application
         multiplicand_tv = (TextView) findViewById(R.id.num1);
         multiplier_tv = (TextView) findViewById(R.id.num2);
         countRightAnswer = (TextView) findViewById(R.id.count_right);
@@ -80,13 +80,11 @@ public class MainActivity extends SetupActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         if (id == R.id.action_top_scores) {
             cdt.cancel();
             Intent topScoreIntent = new Intent(MainActivity.this, TopScoreActivity.class);
             this.startActivity(topScoreIntent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

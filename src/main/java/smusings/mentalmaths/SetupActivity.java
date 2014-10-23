@@ -136,8 +136,6 @@ public class SetupActivity extends Activity {
                 Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);
                 intent.putExtra(intent_count, oldCount);
                 startActivity(intent);
-            } else if (v == saveCancelButton) {
-                //do nothing
             }
             //hides everything
             saveScoreButton.setVisibility(View.GONE);
