@@ -65,7 +65,6 @@ public class SetupActivity extends Activity {
                     ((!event.isShiftPressed())) &&
                             (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
-
                 //set up the ints to work properly
                 int result = Integer.valueOf(multiplicand_tv.getText().toString()) *
                         Integer.valueOf(multiplier_tv.getText().toString());

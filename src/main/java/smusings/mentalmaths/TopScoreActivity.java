@@ -84,6 +84,7 @@ public class TopScoreActivity extends SetupActivity
         intscore5 = Integer.valueOf(top_score_5.getText().toString());
 
         //depending on how big the number is we can switch things around
+        //do something with this code
         if (new_int_score >= intscore1) {
             top_score_1.setText(new_score);
             top_score_2.setText(score1);
@@ -102,7 +103,7 @@ public class TopScoreActivity extends SetupActivity
         } else if (new_int_score >= intscore4) {
             top_score_4.setText(new_score);
             top_score_5.setText(score4);
-        } else if (new_int_score >= intscore5) {
+        } else {
             top_score_5.setText(new_score);
         }
     }
@@ -123,7 +124,6 @@ public class TopScoreActivity extends SetupActivity
         //commits the strings to the shared preferences
         edt.commit();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
