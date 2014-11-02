@@ -4,4 +4,16 @@
     <item android:id="@+id/action_top_scores"
         android:title="@string/top_scores"
         android:showAsAction="never" />
+    <item android:id="@+id/action_plus"
+        android:title="@string/action_add"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_minus"
+        android:title="@string/action_subtract"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_multiply"
+        android:title="@string/action_multipliy"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_divide"
+        android:title="@string/action_division"
+        android:showAsAction="never" />
 </menu>

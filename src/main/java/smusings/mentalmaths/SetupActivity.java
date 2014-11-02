@@ -25,6 +25,7 @@ public class SetupActivity extends Activity {
     public TextView countRightAnswer;
     public TextView timer;
     public TextView latestScore;
+    public TextView operation_symbol;
     public EditText answer;
     public SeekBar multiplicantSeek;
     public SeekBar multiplierSeek;
@@ -65,9 +66,26 @@ public class SetupActivity extends Activity {
                     ((!event.isShiftPressed())) &&
                             (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) &&
                             (event.getAction() == KeyEvent.ACTION_DOWN)) {
+
                 //set up the ints to work properly
-                int result = Integer.valueOf(multiplicand_tv.getText().toString()) *
-                        Integer.valueOf(multiplier_tv.getText().toString());
+                int result = 0;
+                if (operation_symbol.getText() == "x"){
+                    result = Integer.valueOf(multiplicand_tv.getText().toString()) *
+                            Integer.valueOf(multiplier_tv.getText().toString());
+                }
+                else if (operation_symbol.getText() == "÷") {
+                    result = Integer.valueOf(multiplicand_tv.getText().toString()) +
+                            Integer.valueOf(multiplier_tv.getText().toString());
+                }
+                else if (operation_symbol.getText() == "+") {
+                    result = Integer.valueOf(multiplicand_tv.getText().toString()) +
+                            Integer.valueOf(multiplier_tv.getText().toString());
+                }
+                else if (operation_symbol.getText() == "-") {
+                    result = Integer.valueOf(multiplicand_tv.getText().toString()) -
+                            Integer.valueOf(multiplier_tv.getText().toString());
+                }
+
 
                 //make it error proof
                 if (answer.getText().toString().matches("")) {
@@ -129,7 +147,6 @@ public class SetupActivity extends Activity {
     View.OnClickListener buttonClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             if (v == saveScoreButton) {
                 //laucnhes a new intent of the top score
                 Intent intent = new Intent(SetupActivity.this, TopScoreActivity.class);

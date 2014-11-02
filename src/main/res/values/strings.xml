@@ -16,5 +16,9 @@
     <string name="reset">Reset</string>
     <string name="yes"> Yes </string>
     <string name="no"> No </string>
+    <string name="action_add">Addition</string>
+    <string name="action_multipliy">Multiplication</string>
+    <string name="action_subtract">Subtraction</string>
+    <string name="action_division">Division</string>
 
 </resources>

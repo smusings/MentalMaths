@@ -27,6 +27,7 @@ public class MainActivity extends SetupActivity {
         multiplier_tv = (TextView) findViewById(R.id.num2);
         countRightAnswer = (TextView) findViewById(R.id.count_right);
         timer = (TextView) findViewById(R.id.timer);
+        operation_symbol = (TextView)findViewById(R.id.operation_symbol);
         latestScore = (TextView) findViewById(R.id.latestScore);
         answer = (EditText) findViewById(R.id.num_result);
         multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
@@ -39,6 +40,7 @@ public class MainActivity extends SetupActivity {
 
         //initial setup
         countRightAnswer.setText("0");
+        operation_symbol.setText("x");
         multiplicantSeek.setProgress(0);
         multiplierSeek.setProgress(0);
         seekBar_random(multiplicand_tv, multiplicantSeek);
@@ -75,13 +77,26 @@ public class MainActivity extends SetupActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if (id == R.id.action_top_scores) {
             cdt.cancel();
             Intent topScoreIntent = new Intent(MainActivity.this, TopScoreActivity.class);
             this.startActivity(topScoreIntent);
+        }
+        if (id == R.id.action_plus){
+            operation_symbol.setText("+");
+            cdt.cancel();
+        }
+        if (id == R.id.action_minus){
+            operation_symbol.setText("-");
+            cdt.cancel();
+        }
+        if (id == R.id.action_multiply){
+            operation_symbol.setText("x");
+            cdt.cancel();
+        }
+        if (id == R.id.action_divide){
+            operation_symbol.setText("÷");
+            cdt.cancel();
         }
         return super.onOptionsItemSelected(item);
     }
