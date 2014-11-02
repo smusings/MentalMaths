@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/SteelBlue"
+    android:background="@color/BelizeHole"
     android:id="@+id/ScrollView1">
 
     <LinearLayout
@@ -16,7 +16,8 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/Cloud">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/White">
+            android:background="@color/Cloud">
             <TextView
                 android:id="@+id/num1"
                 android:layout_margin="3dp"
@@ -88,16 +89,16 @@
             android:inputType="number"
             android:gravity="center"
             android:imeOptions="actionDone|flagNoExtractUi"
-            android:background="@color/White"
+            android:background="@color/Cloud"
             android:padding="10dp"/>
         <View
             android:layout_width="fill_parent"
             android:layout_height="5dp"/>
         <LinearLayout
-            android:background="@color/White"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/Cloud">
             <TextView
                 android:text="@string/spree_count"
                 android:layout_width="0dp"
@@ -128,7 +129,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/White">
+            android:background="@color/Cloud">
             <TextView
                 android:text="@string/multiplicand"
                 android:textSize="20sp"
@@ -155,7 +156,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/White">
+            android:background="@color/Cloud">
             <TextView
                 android:text="@string/multiplier"
                 android:textSize="20sp"
@@ -185,7 +186,7 @@
             android:id="@+id/topScoreLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/White">
+            android:background="@color/Cloud">
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -223,7 +224,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/White"
-                android:background="@color/DarkSlateGray"
+                android:background="@color/WetAsphalt"
                 android:paddingBottom="2.5dp"
                 android:paddingTop="2.5dp"
                 android:paddingRight="10dp"
@@ -236,7 +237,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/White"
-                android:background="@color/DarkSlateGray"
+                android:background="@color/WetAsphalt"
                 android:paddingBottom="2.5dp"
                 android:paddingTop="2.5dp"
                 android:paddingRight="10dp"

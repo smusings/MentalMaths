@@ -183,5 +183,20 @@ public class SetupActivity extends Activity {
         int oldCount = Integer.valueOf(countRightAnswer.getText().toString());
         int newCount = oldCount + 1;
         countRightAnswer.setText(Integer.toString(newCount));
+        if (newCount == 5){
+            Toast.makeText(this, R.string.five_spree, Toast.LENGTH_LONG).show();
+        }
+        if (newCount == 10){
+            Toast.makeText(this, R.string.ten_spree, Toast.LENGTH_LONG).show();
+        }
+        if (newCount == 15){
+            Toast.makeText(this, R.string.fiften_spree, Toast.LENGTH_LONG).show();
+        }
+        if (newCount == 20){
+            Toast.makeText(this, R.string.twenty_spree, Toast.LENGTH_LONG).show();
+        }
+        if (newCount == 25){
+            Toast.makeText(this, R.string.twenty_five_spree, Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="Cloud">#ecf0f1</color>
+    <color name="BelizeHole">#2980b9</color>
+    <color name="PeterRiver">#3498db</color>
+    <color name="WetAsphalt">#34495e</color>
+    <color name="Nephritis">#27ae60</color>
     <color name="White">#FFFFFF</color>
     <color name="transWhite">#50FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>
