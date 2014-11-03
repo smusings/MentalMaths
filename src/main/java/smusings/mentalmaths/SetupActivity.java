@@ -26,6 +26,7 @@ public class SetupActivity extends Activity {
     public TextView timer;
     public TextView latestScore;
     public TextView operation_symbol;
+    public TextView scoreTextView;
     public EditText answer;
     public SeekBar multiplicantSeek;
     public SeekBar multiplierSeek;
@@ -100,7 +101,6 @@ public class SetupActivity extends Activity {
                     multiplierLayout.setVisibility(View.GONE);
 
                     //if correct, say it is, then clear the text, add one to the count, and give two new numbers.
-                    Toast.makeText(SetupActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                     answer.setText("");
                     setCountPlusOne();
                     seekBar_random(multiplicand_tv, multiplicantSeek);
@@ -135,6 +135,7 @@ public class SetupActivity extends Activity {
             oldCount = countRightAnswer.getText().toString();
             latestScore.setText(oldCount);
             countRightAnswer.setText("0");
+            scoreTextView.setText(R.string.spree_count);
             answer.clearFocus();
 
             //show the score buttons
@@ -185,19 +186,27 @@ public class SetupActivity extends Activity {
         int newCount = oldCount + 1;
         countRightAnswer.setText(Integer.toString(newCount));
         if (newCount == 5){
-            Toast.makeText(this, R.string.five_spree, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.five_spree, Toast.LENGTH_SHORT).show();
+            scoreTextView.setText(R.string.five_spree);
         }
         if (newCount == 10){
-            Toast.makeText(this, R.string.ten_spree, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.ten_spree, Toast.LENGTH_SHORT).show();
+            scoreTextView.setText(R.string.ten_spree);
         }
         if (newCount == 15){
-            Toast.makeText(this, R.string.fiften_spree, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.fiften_spree, Toast.LENGTH_SHORT).show();
+            scoreTextView.setText(R.string.fiften_spree);
         }
         if (newCount == 20){
-            Toast.makeText(this, R.string.twenty_spree, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.twenty_spree, Toast.LENGTH_SHORT).show();
+            scoreTextView.setText(R.string.twenty_spree);
         }
         if (newCount == 25){
-            Toast.makeText(this, R.string.twenty_five_spree, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.twenty_five_spree, Toast.LENGTH_SHORT).show();
+            scoreTextView.setText(R.string.twenty_five_spree);
+        }
+        else {
+            Toast.makeText(SetupActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
         }
     }
 }

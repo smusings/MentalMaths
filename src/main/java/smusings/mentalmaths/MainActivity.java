@@ -29,6 +29,7 @@ public class MainActivity extends SetupActivity {
         timer = (TextView) findViewById(R.id.timer);
         operation_symbol = (TextView)findViewById(R.id.operation_symbol);
         latestScore = (TextView) findViewById(R.id.latestScore);
+        scoreTextView = (TextView) findViewById(R.id.spree_count_textview);
         answer = (EditText) findViewById(R.id.num_result);
         multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
         multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
