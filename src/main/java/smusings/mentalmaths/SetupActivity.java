@@ -121,10 +121,10 @@ public class SetupActivity extends Activity {
     };
 
     //the coutndown timer and what to do when when time = 0
-    CountDownTimer cdt = new CountDownTimer(5000, 1000) {
+    CountDownTimer cdt = new CountDownTimer(10000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-            timer.setText("" + millisUntilFinished / 1000);
+            timer.setText("" + millisUntilFinished /    1000);
         }
 
         @Override
@@ -135,6 +135,7 @@ public class SetupActivity extends Activity {
             oldCount = countRightAnswer.getText().toString();
             latestScore.setText(oldCount);
             countRightAnswer.setText("0");
+            answer.clearFocus();
 
             //show the score buttons
             saveScoreButton.setVisibility(View.VISIBLE);

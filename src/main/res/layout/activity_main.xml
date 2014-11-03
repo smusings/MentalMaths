@@ -100,6 +100,7 @@
             android:orientation="horizontal"
             android:background="@color/Cloud">
             <TextView
+                android:id="@+id/spree_count_textview"
                 android:text="@string/spree_count"
                 android:layout_width="0dp"
                 android:layout_weight="1"
