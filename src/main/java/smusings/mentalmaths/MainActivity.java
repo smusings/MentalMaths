@@ -36,6 +36,7 @@ public class MainActivity extends SetupActivity {
         multiplicandLayout = (LinearLayout) findViewById(R.id.multiplicant_layout);
         multiplierLayout = (LinearLayout) findViewById(R.id.multiplier_layout);
         scoreLayout = (LinearLayout) findViewById(R.id.topScoreLayout);
+        buttonLayout = (LinearLayout) findViewById(R.id.button_layout);
         saveScoreButton = (Button) findViewById(R.id.buttonSave);
         saveCancelButton = (Button) findViewById(R.id.buttonCancel);
 
@@ -47,8 +48,7 @@ public class MainActivity extends SetupActivity {
         seekBar_random(multiplicand_tv, multiplicantSeek);
         seekBar_random(multiplier_tv, multiplierSeek);
         scoreLayout.setVisibility(View.GONE);
-        saveScoreButton.setVisibility(View.GONE);
-        saveCancelButton.setVisibility(View.GONE);
+        buttonLayout.setVisibility(View.GONE);
 
         //assigns listeners to interactable elements
         multiplicantSeek.setOnSeekBarChangeListener(seeker);
@@ -85,18 +85,22 @@ public class MainActivity extends SetupActivity {
         }
         if (id == R.id.action_plus){
             operation_symbol.setText("+");
+            answer.clearFocus();
             cdt.cancel();
         }
         if (id == R.id.action_minus){
             operation_symbol.setText("-");
+            answer.clearFocus();
             cdt.cancel();
         }
         if (id == R.id.action_multiply){
             operation_symbol.setText("x");
+            answer.clearFocus();
             cdt.cancel();
         }
         if (id == R.id.action_divide){
             operation_symbol.setText("÷");
+            answer.clearFocus();
             cdt.cancel();
         }
         return super.onOptionsItemSelected(item);

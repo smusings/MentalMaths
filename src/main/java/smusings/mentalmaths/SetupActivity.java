@@ -33,6 +33,7 @@ public class SetupActivity extends Activity {
     public LinearLayout multiplicandLayout;
     public LinearLayout multiplierLayout;
     public LinearLayout scoreLayout;
+    public LinearLayout buttonLayout;
     public String oldCount;
     public Button saveScoreButton;
     public Button saveCancelButton;
@@ -58,6 +59,7 @@ public class SetupActivity extends Activity {
 
         }
     };
+
 
     //listener for EditText Done button
     TextView.OnEditorActionListener result_entered = new TextView.OnEditorActionListener() {
@@ -87,13 +89,11 @@ public class SetupActivity extends Activity {
                             Integer.valueOf(multiplier_tv.getText().toString());
                 }
 
-
                 //make it error proof
                 if (answer.getText().toString().matches("")) {
                     answer.setText("");
                     answer.clearFocus();
                 }
-
                 //if correct, we say correct, add one to count and restart the countdown
                 else if (Integer.valueOf(answer.getText().toString()) == result) {
                     //on correct
@@ -102,12 +102,14 @@ public class SetupActivity extends Activity {
 
                     //if correct, say it is, then clear the text, add one to the count, and give two new numbers.
                     answer.setText("");
-                    setCountPlusOne();
                     seekBar_random(multiplicand_tv, multiplicantSeek);
                     seekBar_random(multiplier_tv, multiplierSeek);
                     //cancel first otherwise we trigger onFinish many times
                     cdt.cancel();
                     cdt.start();
+
+                    //could we put all of the above into the method?
+                    setCountPlusOne();
                 }
 
                 //if wrong say wrong and do nothign else
@@ -129,18 +131,17 @@ public class SetupActivity extends Activity {
 
         @Override
         public void onFinish() {
-            timer.setText("Seconds Left: " + "0");
+            timer.setText("TIMES UP");
+            answer.clearFocus();    //focus not clearing for some reason?
             multiplicandLayout.setVisibility(View.VISIBLE);
             multiplierLayout.setVisibility(View.VISIBLE);
             oldCount = countRightAnswer.getText().toString();
             latestScore.setText(oldCount);
             countRightAnswer.setText("0");
             scoreTextView.setText(R.string.spree_count);
-            answer.clearFocus();
 
             //show the score buttons
-            saveScoreButton.setVisibility(View.VISIBLE);
-            saveCancelButton.setVisibility(View.VISIBLE);
+            buttonLayout.setVisibility(View.VISIBLE);
             scoreLayout.setVisibility(View.VISIBLE);
         }
     };
@@ -156,8 +157,7 @@ public class SetupActivity extends Activity {
                 startActivity(intent);
             }
             //hides everything
-            saveScoreButton.setVisibility(View.GONE);
-            saveCancelButton.setVisibility(View.GONE);
+            buttonLayout.setVisibility(View.GONE);
             scoreLayout.setVisibility(View.GONE);
         }
     };
