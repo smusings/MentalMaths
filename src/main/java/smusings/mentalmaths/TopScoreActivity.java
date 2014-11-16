@@ -22,21 +22,22 @@ public class TopScoreActivity extends SetupActivity
     public TextView top_score_3;
     public TextView top_score_4;
     public TextView top_score_5;
-    public String score1;
-    public String score2;
-    public String score3;
-    public String score4;
-    public String score5;
-    public String new_score;
-    public int intscore1;
-    public int intscore2;
-    public int intscore3;
-    public int intscore4;
-    public int intscore5;
-    public int new_int_score;
+    public String   score1;
+    public String   score2;
+    public String   score3;
+    public String   score4;
+    public String   score5;
+    public String   new_score;
+    public int      intscore1;
+    public int      intscore2;
+    public int      intscore3;
+    public int      intscore4;
+    public int      intscore5;
+    public int      new_int_score;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
@@ -65,12 +66,14 @@ public class TopScoreActivity extends SetupActivity
         //calls a method
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras != null) {
+        if (extras != null)
+        {
             addNewScore();
         }
     }
 
-    public void addNewScore() {
+    public void addNewScore()
+    {
         Intent intent = getIntent();
         //our intent
         new_score = intent.getStringExtra(SetupActivity.intent_count);
@@ -85,31 +88,41 @@ public class TopScoreActivity extends SetupActivity
 
         //depending on how big the number is we can switch things around
         //do something with this code
-        if (new_int_score >= intscore1) {
+        if (new_int_score >= intscore1)
+        {
             top_score_1.setText(new_score);
             top_score_2.setText(score1);
             top_score_3.setText(score2);
             top_score_4.setText(score3);
             top_score_5.setText(score4);
-        } else if (new_int_score >= intscore2) {
+        }
+        else if (new_int_score >= intscore2)
+        {
             top_score_2.setText(new_score);
             top_score_3.setText(score2);
             top_score_4.setText(score3);
             top_score_5.setText(score4);
-        } else if (new_int_score >= intscore3) {
+        }
+        else if (new_int_score >= intscore3)
+        {
             top_score_3.setText(new_score);
             top_score_4.setText(score3);
             top_score_5.setText(score4);
-        } else if (new_int_score >= intscore4) {
+        }
+        else if (new_int_score >= intscore4)
+        {
             top_score_4.setText(new_score);
             top_score_5.setText(score4);
-        } else {
+        }
+        else
+        {
             top_score_5.setText(new_score);
         }
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
         super.onDestroy();
 
         //creates the sharedperference and saves the values to it
@@ -126,29 +139,34 @@ public class TopScoreActivity extends SetupActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.topscore, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
-        if (id == R.id.action_top_scores) {
+        if (id == R.id.action_top_scores)
+        {
             showDialog();
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    void showDialog() {
+    void showDialog()
+    {
         DialogFragment newFragment = ResetConfirmDialog.newInstance();
         newFragment.show(getFragmentManager(), "dialog");
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onDialogPositiveClick(DialogFragment dialog)
+    {
         top_score_1.setText("0");
         top_score_2.setText("0");
         top_score_3.setText("0");
@@ -157,7 +175,8 @@ public class TopScoreActivity extends SetupActivity
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick(DialogFragment dialog)
+    {
 
     }
 }

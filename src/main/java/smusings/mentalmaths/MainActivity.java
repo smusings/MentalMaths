@@ -15,30 +15,32 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-public class MainActivity extends SetupActivity {
+public class MainActivity extends SetupActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //defines EVERYTHING we need for this application
-        multiplicand_tv = (TextView) findViewById(R.id.num1);
-        multiplier_tv = (TextView) findViewById(R.id.num2);
-        countRightAnswer = (TextView) findViewById(R.id.count_right);
-        timer = (TextView) findViewById(R.id.timer);
-        operation_symbol = (TextView)findViewById(R.id.operation_symbol);
-        latestScore = (TextView) findViewById(R.id.latestScore);
-        scoreTextView = (TextView) findViewById(R.id.spree_count_textview);
-        answer = (EditText) findViewById(R.id.num_result);
-        multiplicantSeek = (SeekBar) findViewById(R.id.multiplicant_seek);
-        multiplierSeek = (SeekBar) findViewById(R.id.multiplier_seek);
-        multiplicandLayout = (LinearLayout) findViewById(R.id.multiplicant_layout);
-        multiplierLayout = (LinearLayout) findViewById(R.id.multiplier_layout);
-        scoreLayout = (LinearLayout) findViewById(R.id.topScoreLayout);
-        buttonLayout = (LinearLayout) findViewById(R.id.button_layout);
-        saveScoreButton = (Button) findViewById(R.id.buttonSave);
-        saveCancelButton = (Button) findViewById(R.id.buttonCancel);
+        multiplicand_tv     = (TextView) findViewById(R.id.num1);
+        multiplier_tv       = (TextView) findViewById(R.id.num2);
+        countRightAnswer    = (TextView) findViewById(R.id.count_right);
+        timer               = (TextView) findViewById(R.id.timer);
+        operation_symbol    = (TextView)findViewById(R.id.operation_symbol);
+        latestScore         = (TextView) findViewById(R.id.latestScore);
+        scoreTextView       = (TextView) findViewById(R.id.spree_count_textview);
+        answer              = (EditText) findViewById(R.id.num_result);
+        multiplicantSeek    = (SeekBar) findViewById(R.id.multiplicant_seek);
+        multiplierSeek      = (SeekBar) findViewById(R.id.multiplier_seek);
+        multiplicandLayout  = (LinearLayout) findViewById(R.id.multiplicant_layout);
+        multiplierLayout    = (LinearLayout) findViewById(R.id.multiplier_layout);
+        scoreLayout         = (LinearLayout) findViewById(R.id.topScoreLayout);
+        buttonLayout        = (LinearLayout) findViewById(R.id.button_layout);
+        saveScoreButton     = (Button) findViewById(R.id.buttonSave);
+        saveCancelButton    = (Button) findViewById(R.id.buttonCancel);
 
         //initial setup
         countRightAnswer.setText("0");
@@ -59,10 +61,13 @@ public class MainActivity extends SetupActivity {
 
         //scrollview hack
         ScrollView sc1 = (ScrollView)findViewById(R.id.ScrollView1);
-        sc1.setOnTouchListener(new View.OnTouchListener() {
+        sc1.setOnTouchListener(new View.OnTouchListener()
+        {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (answer.hasFocus()){
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                if (answer.hasFocus())
+                {
                     answer.clearFocus();
                 }
                 return false;
@@ -70,35 +75,42 @@ public class MainActivity extends SetupActivity {
         });
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main, menu);
         return true;
     }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
-        if (id == R.id.action_top_scores) {
+        if (id == R.id.action_top_scores)
+        {
             cdt.cancel();
             Intent topScoreIntent = new Intent(MainActivity.this, TopScoreActivity.class);
             this.startActivity(topScoreIntent);
         }
-        if (id == R.id.action_plus){
+        if (id == R.id.action_plus)
+        {
             operation_symbol.setText("+");
             answer.clearFocus();
             cdt.cancel();
         }
-        if (id == R.id.action_minus){
+        if (id == R.id.action_minus)
+        {
             operation_symbol.setText("-");
             answer.clearFocus();
             cdt.cancel();
         }
-        if (id == R.id.action_multiply){
+        if (id == R.id.action_multiply)
+        {
             operation_symbol.setText("x");
             answer.clearFocus();
             cdt.cancel();
         }
-        if (id == R.id.action_divide){
+        if (id == R.id.action_divide)
+        {
             operation_symbol.setText("÷");
             answer.clearFocus();
             cdt.cancel();

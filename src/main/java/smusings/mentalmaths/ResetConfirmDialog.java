@@ -11,23 +11,29 @@ public class ResetConfirmDialog extends DialogFragment {
 
     ResetConfirmListener mListener;
 
-    public static ResetConfirmDialog newInstance() {
+    public static ResetConfirmDialog newInstance()
+    {
         return new ResetConfirmDialog();
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState)
+    {
         return new AlertDialog.Builder(getActivity())
                 .setTitle("Reset Scores")
-                .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Reset", new DialogInterface.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
                         mListener.onDialogPositiveClick(ResetConfirmDialog.this);
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
                         mListener.onDialogNegativeClick(ResetConfirmDialog.this);
                     }
                 })
@@ -35,9 +41,11 @@ public class ResetConfirmDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Activity activity)
+    {
         super.onAttach(activity);
-        try {
+        try
+        {
             mListener = (ResetConfirmListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
